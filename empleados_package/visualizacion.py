@@ -149,4 +149,3 @@ def boxplot(y, dataframe, size=(25,35), nombre_fichero="boxplot"):
     plt.tight_layout()
     save_fig(nombre_fichero)
     plt.show()
-
