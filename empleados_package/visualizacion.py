@@ -149,3 +149,39 @@ def boxplot(y, dataframe, size=(25,35), nombre_fichero="boxplot"):
     plt.tight_layout()
     save_fig(nombre_fichero)
     plt.show()
+
+# Histograma con comparativa porcentual
+def histo_porcentual(dataframe, columna_A, columna_B, nombre_fichero="histo_porcentual"):
+        
+    """
+    Genera un histograma porcentual que muestra la relación entre dos columnas categóricas.
+
+    Parámetros:
+    - dataframe: DataFrame que contiene los datos.
+    - columna_A: Nombre de la primera columna categórica.
+    - columna_B: Nombre de la segunda columna categórica.
+    - nombre_fichero: Nombre del archivo para guardar la figura.
+
+    Retorna:
+    - None: Muestra y guarda la grafica.
+
+    Comentarios:
+    - La función utiliza Seaborn para crear boxplots.
+    """
+
+    # Cálculo de la relación porcentual entre columnas
+    datos_porcentuales = dataframe.groupby([columna_A, columna_B]).size() / dataframe.groupby(columna_A).size() * 100
+    datos_porcentuales = datos_porcentuales.reset_index(name='Porcentaje')
+
+    plt.figure(figsize=(10, 6))
+
+    plot = sns.barplot(x=columna_A, y='Porcentaje', hue=columna_B, data=datos_porcentuales)
+    plot.set_xticklabels(plot.get_xticklabels(), rotation=45, horizontalalignment='right')
+
+    plt.title(f'Relacion porcentual entre {columna_A} with {columna_B}')
+    plt.xlabel(columna_A)
+    plt.ylabel('Porcentaje')
+    plt.legend(title=columna_B)
+
+    save_fig(nombre_fichero)
+    plt.show()
