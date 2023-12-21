@@ -190,25 +190,43 @@ def histo_porcentual(dataframe, columna_A, columna_B, nombre_fichero="histo_porc
 
 def quesitos_porcentual(dataframe, columna_A, columna_B):
 
-    # Your existing code to calculate percentages
+    """
+    Genera un gráfico de quesitos (pie chart) comparando el conteo porcentual de los valores
+    de la columna A, dividido entre los valores de la columna B.
+
+    Parámetros:
+    - dataframe (pandas.DataFrame): El DataFrame que contiene los datos.
+    - columna_A (str): Nombre de la columna cuyos valores se compararán porcentualmente.
+    - columna_B (str): Nombre de la columna por la cual se dividirá el conteo porcentual.
+
+    Comentarios:
+    - La función calcula el conteo porcentual de los valores de la columna A, separándolos
+      por los valores únicos de la columna B. Luego, crea un gráfico de quesitos con dos
+      subgráficos, mostrando el conteo porcentual para cada valor único de la columna B.
+      El parámetro 'dataframe' debe ser un objeto DataFrame de pandas.
+    - Se utiliza la biblioteca Matplotlib para generar los gráficos.
+    - La función asume que la columna B tiene exactamente dos valores únicos, ya que crea
+      dos subgráficos (uno para cada valor único).
+    - Los títulos de los subgráficos incluyen información sobre la columna A, los valores
+      únicos de la columna B y la relación con la columna B.
+    """
+
+    # Cálculo de la relación porcentual entre columnas
     datos_porcentuales = dataframe.groupby([columna_A, columna_B]).size() / dataframe.groupby(columna_A).size() * 100
     datos_porcentuales = datos_porcentuales.reset_index(name='Porcentaje')
 
-    # Separate data for 'Yes' and 'No'
-    datos_yes = datos_porcentuales[datos_porcentuales[columna_B] == 'Yes']
-    datos_no = datos_porcentuales[datos_porcentuales[columna_B] == 'No']
+    valores = dataframe[columna_B].unique().tolist()
 
-    # Create subplots
+    datos_yes = datos_porcentuales[datos_porcentuales[columna_B] == valores[0]]
+    datos_no = datos_porcentuales[datos_porcentuales[columna_B] == valores[1]]
+
     fig, axes = plt.subplots(1, 2, figsize=(12, 6))
 
-    # Subplot for 'Yes' in ATTRITION
     axes[0].pie(datos_yes['Porcentaje'], labels=datos_yes[columna_A])
-    axes[0].set_title(f"Conteo de la columna {columna_A} con 'Yes' in {columna_B}")
+    axes[0].set_title(f"Conteo de la columna {columna_A} con {valores[0]} en {columna_B}")
 
-    # Subplot for 'No' in ATTRITION
     axes[1].pie(datos_no['Porcentaje'], labels=datos_no[columna_A])
-    axes[1].set_title(f"Conteo de la columna {columna_A} con 'No' in {columna_B}")
+    axes[1].set_title(f"Conteo de la columna {columna_A} con {valores[1]} en {columna_B}")
 
-    # Adjust layout
     plt.tight_layout()
     plt.show()
