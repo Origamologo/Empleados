@@ -178,7 +178,7 @@ def histo_porcentual(dataframe, columna_A, columna_B, nombre_fichero="histo_porc
     plot = sns.barplot(x=columna_A, y='Porcentaje', hue=columna_B, data=datos_porcentuales)
     plot.set_xticklabels(plot.get_xticklabels(), rotation=45, horizontalalignment='right')
 
-    plt.title(f'Relacion porcentual entre {columna_A} with {columna_B}')
+    plt.title(f'Relacion porcentual de {columna_A} con {columna_B}')
     plt.xlabel(columna_A)
     plt.ylabel('Porcentaje')
     plt.legend(title=columna_B)
