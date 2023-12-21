@@ -188,7 +188,7 @@ def histo_porcentual(dataframe, columna_A, columna_B, nombre_fichero="histo_porc
 
 # Diagrama de quesitos
 
-def quesitos_porcentual(dataframe, columna_A, columna_B):
+def quesitos_porcentual(dataframe, columna_A, columna_B, nombre_fichero="quesitos"):
 
     """
     Genera un gráfico de quesitos (pie chart) comparando el conteo porcentual de los valores
@@ -229,4 +229,5 @@ def quesitos_porcentual(dataframe, columna_A, columna_B):
     axes[1].set_title(f"Conteo de la columna {columna_A} con {valores[1]} en {columna_B}")
 
     plt.tight_layout()
+    save_fig(nombre_fichero)
     plt.show()
