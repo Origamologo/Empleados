@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine, text
 
-def conexion_sql(usuario="root", password, db_name):
+def conexion_sql(password, db_name, usuario="root"):
 
     """
     Establece una conexión a una base de datos MySQL utilizando SQLAlchemy.

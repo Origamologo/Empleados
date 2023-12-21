@@ -160,10 +160,10 @@ def histo_porcentual(dataframe, columna_A, columna_B, nombre_fichero="histo_porc
     - dataframe: DataFrame que contiene los datos.
     - columna_A: Nombre de la primera columna categórica.
     - columna_B: Nombre de la segunda columna categórica.
-    - nombre_fichero: Nombre del archivo para guardar la figura.
+    - nombre_fichero: Nombre del archivo para guardar la imagen.
 
     Retorna:
-    - None: Muestra y guarda la grafica.
+    - None: Muestra y guarda la gráfica.
 
     Comentarios:
     - La función utiliza Seaborn para crear boxplots.
