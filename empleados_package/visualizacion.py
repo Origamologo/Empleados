@@ -185,3 +185,30 @@ def histo_porcentual(dataframe, columna_A, columna_B, nombre_fichero="histo_porc
 
     save_fig(nombre_fichero)
     plt.show()
+
+# Diagrama de quesitos
+
+def quesitos_porcentual(dataframe, columna_A, columna_B):
+
+    # Your existing code to calculate percentages
+    datos_porcentuales = dataframe.groupby([columna_A, columna_B]).size() / dataframe.groupby(columna_A).size() * 100
+    datos_porcentuales = datos_porcentuales.reset_index(name='Porcentaje')
+
+    # Separate data for 'Yes' and 'No'
+    datos_yes = datos_porcentuales[datos_porcentuales[columna_B] == 'Yes']
+    datos_no = datos_porcentuales[datos_porcentuales[columna_B] == 'No']
+
+    # Create subplots
+    fig, axes = plt.subplots(1, 2, figsize=(12, 6))
+
+    # Subplot for 'Yes' in ATTRITION
+    axes[0].pie(datos_yes['Porcentaje'], labels=datos_yes[columna_A])
+    axes[0].set_title(f"Conteo de la columna {columna_A} con 'Yes' in {columna_B}")
+
+    # Subplot for 'No' in ATTRITION
+    axes[1].pie(datos_no['Porcentaje'], labels=datos_no[columna_A])
+    axes[1].set_title(f"Conteo de la columna {columna_A} con 'No' in {columna_B}")
+
+    # Adjust layout
+    plt.tight_layout()
+    plt.show()
