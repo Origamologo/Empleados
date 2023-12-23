@@ -29,7 +29,6 @@ El proyecto está organizado del siguiente modo:
 * **01_limpieza.ipynb:** contiene la limpieza del csv original y exporta el resultado para operaciones posteriores.
 * **02_visualización.ipynb:** primera aproximación a los datos a través de gráficas, orientada a diseñar dashboards en Tableau.
 * **03_sql_bbdd.ipynb:** creación de tablas e ingesta de datos a una base de datos sql.
-* **empleados.sql:** resultado de exportar la base de datos recién creada en python.
 * **data:** directorio que contiene los datos de origen y los que se van generando durante la ETL.
 * **empleados_package:** directorio que contiene ficheros .py con funciones que se utilizan a lo largo del proyecto. Son los siguientes:
   * **visualizacion.py:** funciones de visualización adaptadas a las necesidades concretas del proyecto.
@@ -37,3 +36,14 @@ El proyecto está organizado del siguiente modo:
   *  **sql.py:** funciones para conectarse a un server mysql.
 * **images:** imáges generadas durante el desarrollo del proyecto, sobre todo gráficas de visualización de datos.
 * **sql:** directorio que contiene el fichero generado al exportar la base de datos creada
+  * **empleados.mwb:** resultado de exportar la base de datos recién creada en python.
+
+## Conclusiones
+Ahora comentaremos algunas conclusiones deducidas del análisis y visualización de los datos.
+
+* Parece que la mayor de las fugas se dan entre los más jóvenes, seguidos por los más mayores.
+
+![hist_por_attAge](https://github.com/Origamologo/Empleados/blob/main/images/hist_por_attAge.png)
+
+* La permanencia en la empresa reduce el riesgo de fuga. Quizá sí exista un buen programa de crecimiento laboral, pero no es adecuadamente comunicado alas trabajadores que llevan poco tiempo.
+
